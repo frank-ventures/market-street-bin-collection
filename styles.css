@@ -1,0 +1,13 @@
+.recycling-collection-service {
+  background-color: blue;
+  color: white;
+}
+
+.domestic-waste-collection-service {
+  background-color: black;
+  color: white;
+}
+
+div {
+  padding: 1rem;
+}
