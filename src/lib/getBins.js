@@ -1,6 +1,7 @@
 export async function getBinsFromAPI() {
   const myUprn = 100030122871;
-  const url = `https://www.erewash.gov.uk/bbd-whitespace/one-year-collection-dates?uprn=${myUprn}`;
+  const withOrWithoutXmas = "one-year-collection-dates";
+  const url = `https://www.erewash.gov.uk/bbd-whitespace/${withOrWithoutXmas}?uprn=${myUprn}`;
 
   try {
     const response = await fetch(url, {
@@ -15,7 +16,6 @@ export async function getBinsFromAPI() {
     }
 
     const data = await response.json();
-
     const binArray = Object.values(data[0].settings.collection_dates);
 
     return binArray;

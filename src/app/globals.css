@@ -27,8 +27,6 @@
 }
 
 .recycling-collection-service {
-  background-color: green;
-}
-
-.garden-waste-collection-service {
+  background-color: hsl(208, 100%, 50%);
+  color: white;
 }
