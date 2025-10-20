@@ -31,3 +31,8 @@ export async function getBinsFromAPI() {
 //       service: 'Domestic Waste Collection Service',
 //       'service-identifier': 'domestic-waste-collection-service'
 //     }
+
+// domestic-waste-collection-service
+// christmas-collection-dates
+// recycling-collection-service
+// garden-waste-collection-service

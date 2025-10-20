@@ -3,6 +3,17 @@ import { getBinsFromAPI } from "@/lib/getBins";
 const binData = await getBinsFromAPI();
 
 export default function Home() {
+  function getCollectionCategory(label) {
+    const map = {
+      "domestic-waste-collection-service": "domestic",
+      "christmas-collection-dates": "christmas",
+      "recycling-collection-service": "recycling",
+      "garden-waste-collection-service": "garden",
+    };
+
+    return map[label] || "unknown";
+  }
+
   return (
     <>
       <h1 className="text-5xl p-4 text-center">WHAT BIN IS IT?</h1>
@@ -14,12 +25,14 @@ export default function Home() {
           const currentDate = new Date();
           currentDate.setUTCHours(0, 0, 0, 0);
 
-          // console.log(thisBinDate.getTime() === currentDate.getTime());
-
           const doesDateMatch = thisBinDate.getTime() == currentDate.getTime();
 
+          const label = getCollectionCategory(binDate["service-identifier"]);
+
           return thisBinDate >= currentDate ? (
-            <section className={` ${binDate["service-identifier"]} p-2`}>
+            <section
+              className={` ${binDate["service-identifier"]} p-2 relative`}
+            >
               <article
                 className={`backdrop-opacity-80 bg-slate-400/35 p-2 rounded-2xl`}
               >
@@ -45,6 +58,12 @@ export default function Home() {
                 <p>{binDate.day}</p>
                 <p>{binDate.service}</p>
               </article>
+
+              <img
+                src={`${label}.png`}
+                alt=""
+                className="max-h-10 absolute right-6 top-8"
+              />
             </section>
           ) : (
             ""
