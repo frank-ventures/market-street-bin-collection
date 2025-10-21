@@ -69,7 +69,12 @@ export default function Home() {
 
           // Let's display it
           return thisBinDate >= currentDate ? (
-            <section className={`${binDate["service-identifier"]} text-xl p-2`}>
+            <section
+              key={
+                binDate.timestamp + binDate.day + binDate["service-identifier"]
+              }
+              className={`${binDate["service-identifier"]} text-xl p-2`}
+            >
               <article
                 className={`backdrop-opacity-80 bg-slate-400/45 p-2 rounded-2xl flex gap-8 items-center`}
               >
@@ -83,13 +88,7 @@ export default function Home() {
                     doesDateMatch ? `text-blue-800 font-bold` : ``
                   }  flex flex-col gap-4`}
                 >
-                  <p
-                    key={
-                      binDate.timestamp +
-                      binDate.day +
-                      binDate["service-identifier"]
-                    }
-                  >
+                  <p>
                     {humanReadableDate}{" "}
                     {doesDateMatch && (
                       <span className="text-green-400 font-bold ml-2">
