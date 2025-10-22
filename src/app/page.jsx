@@ -28,15 +28,15 @@ export default function Home() {
 
   return (
     <>
-      <header className="relative h-36 flex items-center justify-center">
-        <h1 className="text-5xl p-4 text-center z-50 bg-slate-500/50 w-fit rounded-2xl text-white">
-          WHAT BIN IS IT?
-        </h1>
+      <header className="relative p-4 h-fit flex gap-4 items-center justify-center bg-slate-500/50 rounded-2xl">
         <img
           src="what-year-is-it.webp"
           alt=""
-          className="w-full absolute top-0 -z-10"
+          className="w-3/6 rounded-2xl max-w-[450px]"
         />
+        <h1 className="text-3xl sm:text-5xl p-4 text-center text-white">
+          WHAT BIN IS IT?
+        </h1>
       </header>
       <main className="w-full flex flex-col items-center">
         <ShowBinData />

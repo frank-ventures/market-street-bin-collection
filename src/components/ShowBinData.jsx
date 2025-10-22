@@ -45,12 +45,12 @@ export default function ShowBinData() {
   return (
     <>
       <button
-        className="mb-8 ml-auto mr-8 border-8 border-blue-500 border-b-10 border-t-blue-200 border-b-blue-800 bg-blue-300 p-4 rounded-2xl hover:cursor-pointer hover:bg-slate-800 hover:text-slate-300 active:bg-green-500 active:text-green-900 flex gap-4 items-center font-semibold"
+        className="fixed z-50 bottom-2 right-2 border-8 border-blue-500 border-b-10 border-t-blue-200 border-b-blue-800 bg-blue-300 p-1 sm:p-4 rounded-2xl hover:cursor-pointer hover:bg-slate-800 hover:text-slate-300 active:bg-green-500 active:text-green-900 flex gap-4 items-center font-semibold text-sm sm:text-lg shadow-lg shadow-black"
         onClick={() => {
           getBinData();
         }}
       >
-        Refresh Bins <img src={`refresh-bin.png`} alt="" className="max-h-15" />
+        Refresh Bins <img src={`refresh-bin.png`} alt="" className="max-h-10" />
       </button>
 
       {loading ? (
