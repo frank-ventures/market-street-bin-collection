@@ -1,6 +1,9 @@
+"use server";
+
 export async function getBinsFromAPI() {
   const myUprn = 100030122871;
   const withOrWithoutXmas = "one-year-collection-dates";
+  // const withOrWithoutXmas = "one-year-collection-dates-without-christmas";
   const url = `https://www.erewash.gov.uk/bbd-whitespace/${withOrWithoutXmas}?uprn=${myUprn}`;
 
   try {
