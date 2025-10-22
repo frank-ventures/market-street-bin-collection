@@ -1,3 +1,4 @@
+import ShowBinData from "@/components/ShowBinData";
 import { getBinsFromAPI } from "@/lib/getBins";
 
 const binData = await getBinsFromAPI();
@@ -37,75 +38,9 @@ export default function Home() {
           className="w-full absolute top-0 -z-10"
         />
       </header>
-
-      {binData.map((month) => {
-        return month.map((binDate) => {
-          // Check API date vs current date
-          const thisBinDate = new Date(binDate.date);
-          thisBinDate.setUTCHours(0, 0, 0, 0);
-          const currentDate = new Date();
-          currentDate.setUTCHours(0, 0, 0, 0);
-          const doesDateMatch = thisBinDate.getTime() == currentDate.getTime();
-
-          // Human readable date string on page
-          const dateOptions = {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          };
-          const humanReadableDate = thisBinDate.toLocaleDateString(
-            "en-GB",
-            dateOptions
-          );
-
-          // Renaming some of the data
-          const collectionService = getCollectionFirstWord(
-            binDate["service-identifier"]
-          );
-          const renamedCollectionService = getCollectionRenamed(
-            binDate["service-identifier"]
-          );
-
-          // Let's display it
-          return thisBinDate >= currentDate ? (
-            <section
-              key={
-                binDate.timestamp + binDate.day + binDate["service-identifier"]
-              }
-              className={`${binDate["service-identifier"]} text-xl p-2`}
-            >
-              <article
-                className={`backdrop-opacity-80 bg-slate-400/45 p-2 rounded-2xl flex gap-8 items-center`}
-              >
-                <img
-                  src={`${collectionService}.png`}
-                  alt=""
-                  className="max-h-10"
-                />
-                <div
-                  className={`${
-                    doesDateMatch ? `text-blue-800 font-bold` : ``
-                  }  flex flex-col gap-4`}
-                >
-                  <p>
-                    {humanReadableDate}{" "}
-                    {doesDateMatch && (
-                      <span className="text-green-400 font-bold ml-2">
-                        That's today!
-                      </span>
-                    )}
-                  </p>
-
-                  <p>{renamedCollectionService}</p>
-                </div>
-              </article>
-            </section>
-          ) : (
-            ""
-          );
-        });
-      })}
+      <main className="w-full flex flex-col items-center">
+        <ShowBinData />
+      </main>
     </>
   );
 }
