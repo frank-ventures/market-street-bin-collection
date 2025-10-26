@@ -35,11 +35,21 @@ export default function ShowBinData() {
     setLoading(false);
   };
 
-  useEffect(() => {
-    console.log("elo m8");
+  function checkIfDateIsTomorrow(date) {
+    const today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setUTCDate(today.getUTCDate() + 1);
 
+    return (
+      date.getUTCFullYear() === tomorrow.getUTCFullYear() &&
+      date.getUTCMonth() === tomorrow.getUTCMonth() &&
+      date.getUTCDate() === tomorrow.getUTCDate()
+    );
+  }
+
+  useEffect(() => {
     getBinData();
-    console.log(myBins);
   }, []);
 
   return (
@@ -65,8 +75,8 @@ export default function ShowBinData() {
             thisBinDate.setUTCHours(0, 0, 0, 0);
             const currentDate = new Date();
             currentDate.setUTCHours(0, 0, 0, 0);
-            const doesDateMatch =
-              thisBinDate.getTime() == currentDate.getTime();
+            const isDateToday = thisBinDate.getTime() == currentDate.getTime();
+            const isDateTomorrow = checkIfDateIsTomorrow(thisBinDate);
 
             // Human readable date string on page
             const dateOptions = {
@@ -99,7 +109,9 @@ export default function ShowBinData() {
                 className={`${binDate["service-identifier"]} text-xl p-2 w-full`}
               >
                 <article
-                  className={`backdrop-opacity-80 bg-slate-400/45 p-2 rounded-2xl flex gap-8 items-center`}
+                  className={`backdrop-opacity-80 bg-slate-400/45 p-2 rounded-2xl flex gap-8 items-center ${
+                    isDateTomorrow ? `outline-2 outline-amber-400` : ``
+                  }`}
                 >
                   <img
                     src={`${collectionService}.png`}
@@ -108,14 +120,21 @@ export default function ShowBinData() {
                   />
                   <div
                     className={`${
-                      doesDateMatch ? `text-blue-800 font-bold` : ``
-                    }  flex flex-col gap-4`}
+                      isDateToday ? `text-blue-800 font-bold` : ``
+                    }  ${
+                      isDateTomorrow ? `font-bold` : ``
+                    } flex flex-col gap-4`}
                   >
                     <p>
                       {humanReadableDate}{" "}
-                      {doesDateMatch && (
+                      {isDateToday && (
                         <span className="text-green-400 font-bold ml-2">
                           That's today!
+                        </span>
+                      )}
+                      {isDateTomorrow && (
+                        <span className="text-amber-400 font-bold ml-2">
+                          That's tomorrow!
                         </span>
                       )}
                     </p>
