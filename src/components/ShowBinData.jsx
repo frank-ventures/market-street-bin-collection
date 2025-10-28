@@ -111,7 +111,7 @@ export default function ShowBinData() {
                 <article
                   className={`backdrop-opacity-80 bg-slate-400/45 p-2 rounded-2xl flex gap-8 items-center ${
                     isDateTomorrow ? `outline-2 outline-amber-400` : ``
-                  }`}
+                  } ${isDateToday ? `outline-2 outline-green-400` : ``}`}
                 >
                   <img
                     src={`${collectionService}.png`}
@@ -119,9 +119,7 @@ export default function ShowBinData() {
                     className="max-h-10"
                   />
                   <div
-                    className={`${
-                      isDateToday ? `text-blue-800 font-bold` : ``
-                    }  ${
+                    className={`${isDateToday ? `font-bold` : ``}  ${
                       isDateTomorrow ? `font-bold` : ``
                     } flex flex-col gap-4`}
                   >
